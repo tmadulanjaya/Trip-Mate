@@ -12,12 +12,12 @@ const FEATURES = [
 
 export default function LandingPage() {
   return (
+    
     <div className="landing">
       {/* Hero */}
       <section className="hero">
         <div className="hero-bg" />
         <div className="container hero-inner">
-          <div className="hero-badge">✈️ Collaborative travel planning</div>
           <h1 className="hero-headline">Plan trips together,<br /><span className="hero-accent">without the chaos.</span></h1>
           <p className="hero-sub">TripMate keeps your whole group aligned — itineraries, packing lists, expenses, and live updates, all in one shared workspace.</p>
           <div className="hero-cta">

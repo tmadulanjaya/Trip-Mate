@@ -7,6 +7,12 @@ import "./DashboardPage.css";
 export default function DashboardPage({ currentUser }) {
   const [trips, setTrips] = useState(mockTrips);
 
+  function handleDeleteTrip(tripId) {
+    setTrips((prev) => prev.filter((t) => t.id !== tripId));
+    // NOTE: this is currently mock data only. Once the dashboard is wired
+    // to the real backend, also call: tripService.remove(tripId)
+  }
+
   return (
     <div className="dashboard-page">
       <div className="container">
@@ -33,7 +39,7 @@ export default function DashboardPage({ currentUser }) {
           </div>
         </div>
 
-        <TripList trips={trips} />
+        <TripList trips={trips} onDelete={handleDeleteTrip} />
       </div>
     </div>
   );

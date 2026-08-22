@@ -9,9 +9,22 @@ export default function Navbar({ currentUser }) {
     <nav className={`navbar ${isLanding ? "navbar-transparent" : ""}`}>
       <div className="navbar-inner container">
         <Link to="/" className="navbar-logo">
-          <span className="logo-icon">✈️</span>
-          <span className="logo-text">TripMate</span>
-        </Link>
+  <svg 
+    className="logo-icon" 
+    width="24" 
+    height="24" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="#2dd4bf" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  >
+    <circle cx="12" cy="12" r="10" stroke="#0f766e" strokeWidth="2" />
+    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="#2dd4bf" />
+  </svg>
+  <span className="logo-text">TripMate</span>
+</Link>
 
         <div className="navbar-links">
           {currentUser ? (
