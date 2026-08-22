@@ -1,0 +1,18 @@
+.dashboard-page { padding: 40px 0 60px; }
+.dashboard-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
+.dashboard-title { font-size: 28px; font-weight: 800; color: var(--navy); letter-spacing: -.5px; }
+.dashboard-sub { font-size: 15px; color: var(--slate); margin-top: 4px; }
+
+.dashboard-stats { display: flex; gap: 16px; margin-bottom: 36px; flex-wrap: wrap; }
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 120px;
+}
+.stat-number { font-size: 32px; font-weight: 900; color: var(--teal); line-height: 1; }
+.stat-label { font-size: 12px; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: .06em; }

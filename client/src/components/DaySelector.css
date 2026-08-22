@@ -1,0 +1,56 @@
+.day-selector {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+.day-selector-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.day-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+}
+.day-tab {
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--slate);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all var(--transition);
+}
+.day-tab:hover { color: var(--teal); }
+.day-tab.active {
+  color: var(--teal);
+  border-bottom-color: var(--teal);
+  font-weight: 600;
+}
+
+.day-pills {
+  display: flex;
+  gap: 8px;
+  padding: 10px 0;
+  overflow-x: auto;
+}
+.day-pill {
+  padding: 5px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--slate);
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  white-space: nowrap;
+  transition: all var(--transition);
+}
+.day-pill:hover { border-color: var(--teal); color: var(--teal); }
+.day-pill.active {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #fff;
+  font-weight: 600;
+}

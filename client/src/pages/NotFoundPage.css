@@ -1,0 +1,13 @@
+.not-found-page {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
+.not-found-content { max-width: 400px; }
+.not-found-emoji { font-size: 64px; display: block; margin-bottom: 16px; }
+.not-found-code { font-size: 80px; font-weight: 900; color: var(--teal); line-height: 1; }
+.not-found-title { font-size: 24px; font-weight: 700; color: var(--navy); margin: 10px 0 8px; }
+.not-found-sub { font-size: 15px; color: var(--slate); margin-bottom: 28px; }

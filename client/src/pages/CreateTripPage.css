@@ -1,0 +1,22 @@
+.create-trip-page { padding: 48px 0 80px; }
+.create-trip-header { margin-bottom: 32px; }
+.create-trip-header h1 { font-size: 28px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+.create-trip-header p { font-size: 15px; color: var(--slate); }
+
+.create-trip-form { max-width: 560px; padding: 36px; }
+.create-trip-dates { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.emoji-picker { display: flex; gap: 8px; flex-wrap: wrap; }
+.emoji-btn {
+  width: 44px; height: 44px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  font-size: 22px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--transition);
+}
+.emoji-btn:hover { border-color: var(--teal); transform: scale(1.1); }
+.emoji-btn.selected { border-color: var(--teal); background: var(--teal-dim); box-shadow: 0 0 0 2px var(--teal); }
+
+.create-trip-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 8px; }

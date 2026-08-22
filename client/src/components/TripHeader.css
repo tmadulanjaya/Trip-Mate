@@ -1,0 +1,70 @@
+.trip-header { }
+
+.trip-header-cover {
+  position: relative;
+  height: 180px;
+  background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.trip-header-emoji {
+  position: absolute;
+  font-size: 120px;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: .18;
+  user-select: none;
+}
+.trip-header-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(15,23,42,.85) 40%, transparent 100%);
+}
+.trip-header-info {
+  position: relative;
+  padding: 0 24px 24px;
+}
+.trip-header-name {
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -.5px;
+  margin-bottom: 6px;
+}
+.trip-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,.75);
+  font-size: 14px;
+}
+.trip-header-sep { opacity: .5; }
+
+.trip-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+}
+.trip-header-members {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.trip-member-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px 10px 3px 4px;
+  font-size: 13px;
+  font-weight: 500;
+}
