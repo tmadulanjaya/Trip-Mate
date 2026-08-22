@@ -1,0 +1,5 @@
+.trip-details-page { }
+.trip-details-body { padding-bottom: 60px; }
+.trip-details-section { padding: 32px 0; }
+.trip-details-comments { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
+.trip-not-found { padding: 80px 24px; }

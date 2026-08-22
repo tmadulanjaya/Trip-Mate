@@ -1,0 +1,35 @@
+.itinerary-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  align-items: start;
+  padding: 24px 0;
+}
+@media (max-width: 900px) {
+  .itinerary-board { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .itinerary-board { grid-template-columns: 1fr; }
+}
+
+.item-detail { display: flex; flex-direction: column; gap: 12px; }
+.item-detail-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  font-size: 14px;
+}
+.item-detail-label {
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  min-width: 110px;
+  padding-top: 2px;
+}
+.item-detail-desc { flex-direction: column; gap: 4px; }
+.item-detail-desc p { color: var(--slate); line-height: 1.6; }
+.item-detail-actions { margin-top: 8px; display: flex; justify-content: flex-end; }
+
+.modal-footer-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px; }
