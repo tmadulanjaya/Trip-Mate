@@ -7,29 +7,40 @@ import DashboardPage from "./pages/DashboardPage";
 import TripDetailsPage from "./pages/TripDetailsPage";
 import CreateTripPage from "./pages/CreateTripPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import ProfilePage from "./pages/ProfilePage";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 import "./index.css";
 
-// Mock auth — replace with real context later
-const mockCurrentUser = { id: "u1", name: "Pasindu", avatar: "P" };
+function AppContent() {
+  const { user } = useAuth();
 
-export default function App() {
   return (
     <BrowserRouter>
       <div className="app">
-        <Navbar currentUser={mockCurrentUser} />
+        <Navbar currentUser={user} />
         <main className="main-content">
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/dashboard" element={<DashboardPage currentUser={mockCurrentUser} />} />
-            <Route path="/trips/new" element={<CreateTripPage currentUser={mockCurrentUser} />} />
-            <Route path="/trips/:tripId" element={<TripDetailsPage currentUser={mockCurrentUser} />} />
+            <Route path="/signup" element={<RegisterPage />} />
+            <Route path="/profile" element={<ProfilePage currentUser={user} />} />
+            <Route path="/dashboard" element={<DashboardPage currentUser={user} />} />
+            <Route path="/trips/new" element={<CreateTripPage currentUser={user} />} />
+            <Route path="/trips/:tripId" element={<TripDetailsPage currentUser={user} />} />
             <Route path="/404" element={<NotFoundPage />} />
             <Route path="*" element={<Navigate to="/404" replace />} />
           </Routes>
         </main>
       </div>
     </BrowserRouter>
+  );
+}
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }

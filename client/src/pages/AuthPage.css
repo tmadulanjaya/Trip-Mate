@@ -1,17 +1,44 @@
 .auth-page {
   min-height: calc(100vh - 60px);
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(360px, 1.1fr);
   align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%);
-  padding: 24px;
+  gap: 64px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 48px 32px 72px;
+  background: var(--surface);
 }
+.auth-intro { padding: 20px 0; }
+.auth-kicker {
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.auth-intro h2 {
+  max-width: 440px;
+  color: var(--navy);
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -.04em;
+  margin-bottom: 18px;
+}
+.auth-intro p { max-width: 420px; color: var(--slate); font-size: 16px; }
+.auth-points { display: grid; gap: 14px; margin-top: 32px; list-style: none; }
+.auth-points li { display: flex; align-items: center; gap: 10px; color: var(--navy-light); font-size: 14px; font-weight: 600; }
+.auth-points li::before { content: "✓"; color: var(--teal); font-size: 18px; font-weight: 800; }
 .auth-card {
   width: 100%;
-  max-width: 420px;
-  padding: 36px;
+  max-width: 460px;
+  justify-self: end;
+  padding: 40px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
 }
-.auth-logo { font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 20px; color: var(--navy); }
+.auth-logo { font-size: 22px; font-weight: 800; margin-bottom: 30px; color: var(--navy); }
 .auth-title { font-size: 24px; font-weight: 800; text-align: center; color: var(--navy); margin-bottom: 6px; }
 .auth-sub { font-size: 14px; color: var(--muted); text-align: center; margin-bottom: 28px; }
 .auth-error {
@@ -27,3 +54,12 @@
 .auth-switch { font-size: 13px; color: var(--muted); text-align: center; margin-top: 20px; }
 .auth-switch a { color: var(--teal); font-weight: 600; }
 .auth-switch a:hover { text-decoration: underline; }
+.auth-card .btn { min-height: 46px; }
+
+@media (max-width: 760px) {
+  .auth-page { display: block; padding: 24px 20px 48px; }
+  .auth-intro { padding: 12px 0 32px; }
+  .auth-intro h2 { font-size: 34px; }
+  .auth-points { display: none; }
+  .auth-card { max-width: none; padding: 28px 22px; }
+}

@@ -11,6 +11,8 @@
   border-bottom: none;
   box-shadow: none;
 }
+.navbar-auth { background: transparent; border-bottom: none; box-shadow: none; }
+.navbar-auth .navbar-inner { max-width: 1120px; }
 .navbar-inner {
   display: flex;
   align-items: center;

@@ -4,9 +4,10 @@ import "./Navbar.css";
 export default function Navbar({ currentUser }) {
   const location = useLocation();
   const isLanding = location.pathname === "/";
+  const isAuthPage = ["/login", "/register", "/signup"].includes(location.pathname);
 
   return (
-    <nav className={`navbar ${isLanding ? "navbar-transparent" : ""}`}>
+    <nav className={`navbar ${isLanding ? "navbar-transparent" : ""} ${isAuthPage ? "navbar-auth" : ""}`}>
       <div className="navbar-inner container">
         <Link to="/" className="navbar-logo">
   <svg 
@@ -27,17 +28,20 @@ export default function Navbar({ currentUser }) {
 </Link>
 
         <div className="navbar-links">
-          {currentUser ? (
+          {isAuthPage ? null : currentUser ? (
             <>
               <Link to="/dashboard" className="nav-link">My Trips</Link>
               <Link to="/trips/new" className="btn btn-primary btn-sm">+ New Trip</Link>
-              <div className="nav-user">
+              <Link to="/profile" className="nav-user" aria-label="Open your profile">
                 <div className="avatar avatar-sm">{currentUser.avatar}</div>
                 <span className="nav-username">{currentUser.name}</span>
-              </div>
+              </Link>
             </>
           ) : (
             <>
+              <Link to="/login" className="nav-user nav-user-guest" aria-label="Sign in to your account">
+                <div className="avatar avatar-sm avatar-guest">?</div>
+              </Link>
               <Link to="/login" className="nav-link">Sign in</Link>
               <Link to="/register" className="btn btn-primary btn-sm">Get started</Link>
             </>
