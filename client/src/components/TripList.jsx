@@ -13,7 +13,7 @@ function getMember(id) {
   return mockUsers.find((u) => u.id === id);
 }
 
-export default function TripList({ trips }) {
+export default function TripList({ trips, onDelete }) {
   if (!trips || trips.length === 0) {
     return (
       <div className="empty-state">
@@ -24,10 +24,29 @@ export default function TripList({ trips }) {
     );
   }
 
+  function handleDelete(e, trip) {
+    e.preventDefault(); // stop the parent <Link> from navigating
+    e.stopPropagation();
+    if (window.confirm(`Delete "${trip.name}"? This can't be undone.`)) {
+      onDelete?.(trip.id);
+    }
+  }
+
   return (
     <div className="trip-list">
       {trips.map((trip) => (
         <Link to={`/trips/${trip.id}`} key={trip.id} className="trip-card">
+          {onDelete && (
+            <button
+              type="button"
+              className="trip-card-delete"
+              title="Delete trip"
+              aria-label={`Delete ${trip.name}`}
+              onClick={(e) => handleDelete(e, trip)}
+            >
+              🗑️
+            </button>
+          )}
           <div className="trip-card-cover">
             <span className="trip-cover-emoji">{trip.coverEmoji}</span>
           </div>
