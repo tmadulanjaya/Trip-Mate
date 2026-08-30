@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { authService } from "../services/authService";
 import "./AuthPage.css";
 
 export default function RegisterPage() {
@@ -9,15 +10,19 @@ export default function RegisterPage() {
   const [form, setForm] = useState({ name: "", email: "", password: "", confirm: "" });
   const [error, setError] = useState("");
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (!form.name || !form.email || !form.password) { setError("Please fill in all fields."); return; }
     if (form.password !== form.confirm) { setError("Passwords do not match."); return; }
     if (form.password.length < 6) { setError("Password must be at least 6 characters."); return; }
-    // TODO: replace with real API call
-    localStorage.setItem("tripmate_token", "mock-token");
-    login({ id: "u1", name: form.name, avatar: form.name.charAt(0).toUpperCase(), email: form.email });
-    navigate("/dashboard");
+
+    try {
+      const data = await authService.register(form.name, form.email, form.password);
+      login(data.user);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.response?.data?.message || "Something went wrong. Please try again.");
+    }
   }
 
   return (

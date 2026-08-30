@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { authService } from "../services/authService";
 
 const AuthContext = createContext(null);
 
@@ -7,16 +8,22 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // TODO: replace with real API call — authService.getMe()
     const token = localStorage.getItem("tripmate_token");
     if (token) {
-      setUser({ id: "u1", name: "Pasindu", avatar: "P", email: "malshanpasindu490@gmail.com" });
+      authService.getMe()
+        .then(setUser)
+        .catch(() => {
+          localStorage.removeItem("tripmate_token");
+          setUser(null);
+        })
+        .finally(() => setLoading(false));
+    } else {
+      setLoading(false);
     }
-    setLoading(false);
   }, []);
 
   function login(userData) { setUser(userData); }
-  function logout()        { setUser(null); localStorage.removeItem("tripmate_token"); }
+  function logout()        { authService.logout(); setUser(null); }
 
   return (
     <AuthContext.Provider value={{ user, loading, login, logout }}>

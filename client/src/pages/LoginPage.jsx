@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { authService } from "../services/authService";
 import "./AuthPage.css";
 
 export default function LoginPage() {
@@ -9,14 +10,18 @@ export default function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (!form.email || !form.password) { setError("Please fill in all fields."); return; }
     if (!/^\S+@\S+\.\S+$/.test(form.email)) { setError("Enter a valid email address."); return; }
-    // TODO: replace with real API call
-    localStorage.setItem("tripmate_token", "mock-token");
-    login({ id: "u1", name: "Pasindu", avatar: "P", email: form.email });
-    navigate("/dashboard");
+
+    try {
+      const data = await authService.login(form.email, form.password);
+      login(data.user);
+      navigate("/dashboard");
+    } catch (err) {
+      setError("Invalid email or password.");
+    }
   }
 
   return (
