@@ -1,16 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import TripList from "../components/TripList";
-import { mockTrips } from "../mockData";
+import { tripService } from "../services/tripService";
 import "./DashboardPage.css";
 
 export default function DashboardPage({ currentUser }) {
-  const [trips, setTrips] = useState(mockTrips);
+  const [trips, setTrips] = useState([]);
+
+  useEffect(() => {
+    tripService.getAll().then(setTrips);
+  }, []);
 
   function handleDeleteTrip(tripId) {
-    setTrips((prev) => prev.filter((t) => t.id !== tripId));
-    // NOTE: this is currently mock data only. Once the dashboard is wired
-    // to the real backend, also call: tripService.remove(tripId)
+    tripService.remove(tripId).then(() => {
+      setTrips((prev) => prev.filter((t) => t.id !== tripId));
+    });
   }
 
   return (

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { tripService } from "../services/tripService";
 import "./CreateTripPage.css";
 
 const EMOJIS = ["🗼", "🗾", "🏖️", "🏔️", "🌍", "🌏", "🗺️", "🚢", "🏛️", "🌴"];
@@ -11,7 +12,7 @@ export default function CreateTripPage({ currentUser }) {
   });
   const [error, setError] = useState("");
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (!form.name || !form.destination || !form.startDate || !form.endDate) {
       setError("Please fill in all required fields.");
@@ -21,9 +22,17 @@ export default function CreateTripPage({ currentUser }) {
       setError("End date must be after start date.");
       return;
     }
-    // TODO: POST to API — for now navigate with mock
-    console.log("Creating trip:", form);
-    navigate("/dashboard");
+
+    try {
+      await tripService.create({
+        ...form,
+        owner: currentUser?.id,
+        members: [currentUser?.id],
+      });
+      navigate("/dashboard");
+    } catch (err) {
+      setError("Something went wrong creating the trip. Please try again.");
+    }
   }
 
   return (

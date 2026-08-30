@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import TripHeader from "../components/TripHeader";
 import DaySelector from "../components/DaySelector";
@@ -7,12 +7,21 @@ import PackingList from "../components/PackingList";
 import ExpenseList from "../components/ExpenseList";
 import PollList from "../components/PollList";
 import CommentSection from "../components/CommentSection";
-import { mockTrips, mockItineraryItems, mockPackingItems, mockExpenses, mockPolls } from "../mockData";
+import { mockItineraryItems, mockPackingItems, mockExpenses, mockPolls } from "../mockData";
+import { tripService } from "../services/tripService";
 import "./TripDetailsPage.css";
 
 export default function TripDetailsPage({ currentUser }) {
   const { tripId } = useParams();
-  const trip = mockTrips.find((t) => t.id === tripId);
+
+  const [trip, setTrip] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    tripService.getById(tripId)
+      .then(setTrip)
+      .finally(() => setLoading(false));
+  }, [tripId]);
 
   const [activeTab, setActiveTab] = useState("itinerary");
   const [activeDay, setActiveDay] = useState(1);
@@ -20,6 +29,10 @@ export default function TripDetailsPage({ currentUser }) {
   const [packingItems, setPackingItems] = useState(mockPackingItems.filter((p) => p.tripId === tripId));
   const [expenses, setExpenses] = useState(mockExpenses.filter((e) => e.tripId === tripId));
   const [polls, setPolls] = useState(mockPolls.filter((p) => p.tripId === tripId));
+
+  if (loading) {
+    return <div className="container">Loading trip...</div>;
+  }
 
   if (!trip) {
     return (
